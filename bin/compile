@@ -6,4 +6,6 @@ BINDIR=$(readlink -f $(dirname $0))
 cd $1
 pwd
 unset GIT_DIR
-${BINDIR}/git-submodule-update.py gitmodules
+#${BINDIR}/git-submodule-update.py gitmodules
+git submodule init
+git submodule update --init --recursive
