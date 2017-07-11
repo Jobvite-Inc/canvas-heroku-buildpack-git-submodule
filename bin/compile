@@ -23,7 +23,7 @@ f=$BUILD_DIR/pre-build.sh
 
 if [ -e "$f" ]; then
     cd $BUILD_DIR
-    exec $f
+    exec bash -x $f
 else
     echo "Unable to find [$f]"
 fi;
