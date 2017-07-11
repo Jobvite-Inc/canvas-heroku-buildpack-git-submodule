@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 
+set -x
+
 echo '-----> Engaging submodule'
+
+BP_DIR=$(cd $(dirname $0)/..; pwd) # absolute path
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
 
 BINDIR=$(readlink -f $(dirname $0))
 cd $1
 pwd
 unset GIT_DIR
 #${BINDIR}/git-submodule-update.py gitmodules
+cd $BUILD_DIR
 git submodule init
 git submodule update --init --recursive
