@@ -2,18 +2,26 @@
 
 set -x
 
-echo '-----> Engaging submodule'
+#echo '-----> Engaging submodule'
+echo 'running pre-build.sh'
 
 BP_DIR=$(cd $(dirname $0)/..; pwd) # absolute path
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-BINDIR=$(readlink -f $(dirname $0))
-cd $1
-pwd
-unset GIT_DIR
-#${BINDIR}/git-submodule-update.py gitmodules
-cd $BUILD_DIR
-git submodule init
-git submodule update --init --recursive
+#BINDIR=$(readlink -f $(dirname $0))
+#cd $1
+#pwd
+#unset GIT_DIR
+##${BINDIR}/git-submodule-update.py gitmodules
+#cd $BUILD_DIR
+#git submodule init
+#git submodule update --init --recursive
+
+f=$BUILD_DIR/pre-build.sh
+
+if [ -e "$f" ]; then
+    cd $BUILD_DIR
+    exec $f
+fi;
